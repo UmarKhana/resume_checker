@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Resume Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="gradient-bg"></div>
+
+    <div class="container" id="welcomeScreen">
+        <div class="card welcome-card">
+            <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            </div>
+            <h1>Smart Resume<br>Analyzer</h1>
+            <p class="subtitle">Intelligent insights for your career.</p>
+            <button class="btn-primary" onclick="showUploadScreen()">Upload Resume</button>
+            <p class="footer-text">Learn More about how it works.</p>
+        </div>
+    </div>
+
+    <div class="container hidden" id="uploadScreen">
+        <div class="card">
+            <div class="header">
+                <button class="icon-btn" onclick="showWelcomeScreen()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <h2>Upload Documents</h2>
+                <button class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="input-group">
+                <label for="jobRoleInput">Job Role / Requirements</label>
+                <input type="text" id="jobRoleInput" placeholder="e.g., Social Media Manager, Data Scientist, etc."
+                    value="Web Developer">
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileInput" accept=".pdf" multiple hidden>
+                <div class="upload-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M20 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="16 8 12 4 8 8"></polyline>
+                        <line x1="12" y1="4" x2="12" y2="16"></line>
+                    </svg>
+                </div>
+                <p class="upload-text">Drag & Drop or Click to Upload</p>
+                <p class="upload-subtext">Supported formats: PDF (Multiple files allowed)</p>
+            </div>
+
+            <div id="filesList"></div>
+
+            <button class="btn-primary hidden" id="analyzeBtn" onclick="analyzeResume()">
+                <span id="btnText">Analyze All Resumes</span>
+                <div class="spinner hidden" id="spinner"></div>
+            </button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="resultsScreen">
+        <div class="card">
+            <div class="header">
+                <button class="icon-btn" onclick="showUploadScreen()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <h2>Top Candidates</h2>
+                <button class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="info-card">
+                <h3>Job Role: <span id="selectedRole">Web Developer</span></h3>
+                <p>Total Resumes Analyzed: <strong id="totalResumes">0</strong></p>
+                <p>Showing Top: <strong id="topCount">10</strong></p>
+            </div>
+
+            <div id="candidatesList"></div>
+
+            <button class="btn-primary">Download Full Report</button>
+        </div>
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>
